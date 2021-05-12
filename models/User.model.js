@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 
+
 //define match schema
 const UserSchema = new Schema({
   username: {
@@ -12,6 +13,8 @@ const UserSchema = new Schema({
   },
   favouriteSports: String,
   img: String,
+
+  //need this??
   /*matchId:[{
     type: Schema.Types.ObjectId,
     ref:"Match"

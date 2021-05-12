@@ -1,16 +1,23 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
-// 1. Define your schema
+//require user model here
+require("./User.model")
+
+//define comment schema
 let CommentSchema = new Schema({
   userName: String, 
   message: String,
   timestamps: true,
-  // like this?
-  user_id: {type: Schema.ObjectId, ref: "User"}
+  //like this?
+  userId: [{
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }
+  ]
 })
 
-// 2. Define your model
+//define comment model
 let CommentModel = model('user', CommentSchema)
 
-// 3. Export your Model with 'module.exports'
+//eExport Model
 module.exports = CommentModel

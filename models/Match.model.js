@@ -1,5 +1,8 @@
 const { Schema, model } = require("mongoose");
 
+//require user model here
+require("./User.model")
+
 //define match schema
 const matchSchema = new Schema({
   username: {
