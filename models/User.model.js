@@ -1,14 +1,24 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema({
+//define match schema
+const UserSchema = new Schema({
   username: {
     type: String,
     unique: true
   },
-  password: String
+  passwordHash: {
+    type: String,
+    required: true
+  },
+  favouriteSports: String,
+  img: String,
+  /*matchId:[{
+    type: Schema.Types.ObjectId,
+    ref:"Match"
+  }]*/
 });
 
+//define match model
 const User = model("User", userSchema);
-
+//export model
 module.exports = User;
