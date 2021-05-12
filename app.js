@@ -14,6 +14,26 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
+
+// setting session configuration here
+const session = require('express-session');
+//connecting mongoDB here
+const MongoStore = require('connect-mogo');
+
+app.use(session({
+  secret:'NotManishsAge',
+  saveUninitialized: false,
+  resave: false,
+  cookie: {
+    maxAge: 1000*60*60*24// is one day fine? session expires after one day
+  },
+  store: new MongoStore({
+    //is ReactUser right??
+    mongoUrl:process.env.MONGODB_URI || "mongodb//localhost/ReactUser",
+    ttl: 60*60*24, //expires in one day
+  })
+}))
+
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controled from the routes/index.js
 const allRoutes = require('./routes');
