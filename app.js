@@ -18,7 +18,7 @@ require('./config')(app);
 // setting session configuration here
 const session = require('express-session');
 //connecting mongoDB here
-const MongoStore = require('connect-mogo');
+const MongoStore = require('connect-mongo');
 
 app.use(session({
   secret:'NotManishsAge',
@@ -28,20 +28,18 @@ app.use(session({
     maxAge: 1000*60*60*24// is one day fine? session expires after one day
   },
   store: new MongoStore({
-    //is ReactUser right??
-    mongoUrl:process.env.MONGODB_URI || "mongodb//localhost/ReactUser",
+    //is MatchPartner right??
+    mongoUrl:process.env.MONGODB_URI || "mongodb://localhost/MatchPartner",
     ttl: 60*60*24, //expires in one day
   })
 }))
 
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controled from the routes/index.js
+
 const allRoutes = require('./routes');
 app.use('/api', allRoutes);
 
-// linked authRoutes here
-const authRoutes = require("./routes/auth.routes");
-app.use("/api", authRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);

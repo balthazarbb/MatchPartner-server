@@ -1,21 +1,19 @@
 const express = require('express')
 const router = express.Router()
-
 //installed bcrypt.js
 const bcrypt = require('bcryptjs');
-
 const UserModel = require('../models/User.model');
+
 
 router.post('/signup', (req, res) => {
     const {username, password } = req.body;
-    console.log(username, password);
  
     // -----SERVER SIDE VALIDATION ----------
-    /* 
-    if (!username || !email || !password) {
+    /*
+    if (!username || !password) {
         res.status(500)
           .json({
-            errorMessage: 'Please enter username, email and password'
+            errorMessage: 'Please enter username and password'
           });
         return;  
     }
@@ -25,7 +23,7 @@ router.post('/signup', (req, res) => {
           errorMessage: 'Email format not correct'
         });
         return;  
-    }
+    } 
     const myPassRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
     if (!myPassRegex.test(password)) {
       res.status(500).json({
@@ -39,16 +37,17 @@ router.post('/signup', (req, res) => {
     // creating a salt 
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
-    UserModel.create({name: username, email, passwordHash: hash})
+    UserModel.create({username, passwordHash: hash})
       .then((user) => {
         // ensuring that we don't share the hash as well with the user
         user.passwordHash = "***";
         res.status(200).json(user);
       })
       .catch((err) => {
+        console.log(err)
         if (err.code === 11000) {
           res.status(500).json({
-            errorMessage: 'username or email entered already exists!',
+            errorMessage: 'username entered already exists!',
             message: err,
           });
         } 
@@ -59,11 +58,11 @@ router.post('/signup', (req, res) => {
           });
         }
       })
-});
+}); 
  
 // will handle all POST requests to http:localhost:5005/api/signin
 router.post('/signin', (req, res) => {
-    const {email, password } = req.body;
+    const {username, password } = req.body;
 
     // -----SERVER SIDE VALIDATION ----------
     /*
@@ -83,7 +82,7 @@ router.post('/signin', (req, res) => {
     */
   
     // Find if the user exists in the database 
-    UserModel.findOne({email})
+    UserModel.findOne({username})
       .then((userData) => {
            //check if passwords match
           bcrypt.compare(password, userData.passwordHash)
@@ -122,7 +121,7 @@ router.post('/signin', (req, res) => {
 });
  
 // will handle all POST requests to http:localhost:5005/api/logout
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.session.destroy();
     // Nothing to send back to the user
     res.status(204).json({});

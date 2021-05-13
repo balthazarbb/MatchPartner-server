@@ -22,6 +22,6 @@ const UserSchema = new Schema({
 });
 
 //define match model
-const User = model("User", userSchema);
+const User = model('User', UserSchema);
 //export model
 module.exports = User;

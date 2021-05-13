@@ -17,7 +17,7 @@ let CommentSchema = new Schema({
 })
 
 //define comment model
-let CommentModel = model('user', CommentSchema)
+let CommentModel = model('User', CommentSchema)
 
-//eExport Model
+//export Model
 module.exports = CommentModel
