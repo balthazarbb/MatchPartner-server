@@ -13,7 +13,7 @@ const matchSchema = new Schema({
   dateAndTime: String,
   Duration: Number,
   NumberOfParticipants: Number,
-  EquipmentNeeded: String,
+  Equipment: String,
   userId:[{
     type: Schema.Types.ObjectId,
     ref:"User"
@@ -22,6 +22,6 @@ const matchSchema = new Schema({
 });
 
 //define match model
-const Match = model("Match", matchSchema);
+const MatchModel = model("Match", matchSchema);
 //export model
-module.exports = Match;
+module.exports = MatchModel;

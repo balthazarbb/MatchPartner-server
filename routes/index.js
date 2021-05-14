@@ -6,8 +6,11 @@ router.get("/", (req, res, next) => {
 
 // You put the next routes here 👇
 
-// linked authRoutes here
+// linkRoutes here
 const authRoutes = require("./auth.routes");
 router.use("/", authRoutes);
+
+const matchesRoutes = require('./routes/matches.routes');
+app.use('/api', matchesRoutes);
 
 module.exports = router;
