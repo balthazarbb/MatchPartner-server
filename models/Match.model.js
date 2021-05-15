@@ -11,9 +11,9 @@ const matchSchema = new Schema({
   },
   sports: String,
   dateAndTime: String,
-  Duration: Number,
-  NumberOfParticipants: Number,
-  Equipment: String,
+  duration: Number,
+  numberOfParticipants: Number,
+  equipment: String,
   userId:[{
     type: Schema.Types.ObjectId,
     ref:"User"
