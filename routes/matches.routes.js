@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 
@@ -50,7 +51,7 @@ router.get('/matches/:matchId', (req, res) => {
           })
      }) 
 })
-/*
+
 // will handle all DELETE requests to http:localhost:5005/api/todos/:id
 router.delete('/todos/:id', (req, res) => {
     TodoModel.findByIdAndDelete(req.params.id)
@@ -80,5 +81,7 @@ router.patch('/todos/:id', (req, res) => {
                })
           }) 
 })
-*/
+
 module.exports = router;
+
+
