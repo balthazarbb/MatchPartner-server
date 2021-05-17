@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
-//require user model here
-require("./User.model")
+// require user model here
+//require("./User.model")
 
 //define match schema
 const matchSchema = new Schema({
@@ -10,14 +10,14 @@ const matchSchema = new Schema({
     unique: true
   },
   sports: String,
-  dateAndTime: String,
-  duration: Number,
-  numberOfParticipants: Number,
-  equipment: String,
-  userId:[{
-    type: Schema.Types.ObjectId,
-    ref:"User"
-  }]
+  //dateAndTime: String,
+ // duration: Number,
+  //numberOfParticipants: Number,
+  //equipment: String,
+ // userId:[{
+ //   type: Schema.Types.ObjectId,
+//  ref:"User"
+//} //]
 
 });
 
