@@ -14,11 +14,10 @@ const UserSchema = new Schema({
   favouriteSports: String,
   img: String,
 
-  //need this??
-  /*matchId:[{
+  matchId:[{
     type: Schema.Types.ObjectId,
-    ref:"Match"
-  }]*/
+    ref:"User"
+  }]
 });
 
 //define match model

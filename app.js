@@ -43,6 +43,12 @@ app.use('/api', allRoutes);
 const matchesRoutes = require('./routes/matches.routes');
 app.use('/api', matchesRoutes);
 
+const matchesPart = require('./routes/participant.routes');
+app.use('/api', matchesPart);
+
+//const commentRoutes = require('./routes/comment.routes');
+//app.use('/api', commentRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 

@@ -43,6 +43,7 @@ router.post('/create', (req, res) => {
 //PS: Don't type :todoId , it's something dynamic, 
 router.get('/matches/:id', (req, res) => {
     MatchModel.findById(req.params.id)
+     .populate('userId')
      .then((response) => {
           res.status(200).json(response)
      })
@@ -71,8 +72,8 @@ router.delete('/matches/:id', (req, res) => {
 // will handle all PATCH requests to http:localhost:5005/api/todos/:id
 router.patch('/matches/:id', (req, res) => {
     let id = req.params.id
-    const {sports, dateAndTime, duration, numberOfParticipants, equipment} = req.body;
-    MatchModel.findByIdAndUpdate(id, {$set: {sports, dateAndTime, duration, numberOfParticipants, equipment}}, {new: true})
+    const {sports} = req.body;
+    MatchModel.findByIdAndUpdate(id, {$set: {sports}}, {new: true})
           .then((response) => {
                res.status(200).json(response)
           })
@@ -87,3 +88,8 @@ router.patch('/matches/:id', (req, res) => {
 module.exports = router;
 
 
+/*
+Line 76
+, dateAndTime, duration, numberOfParticipants, equipment
+and so on
+ */

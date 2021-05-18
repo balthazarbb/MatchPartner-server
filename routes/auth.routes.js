@@ -9,14 +9,14 @@ router.post('/signup', (req, res) => {
     const {username, password } = req.body;
  
     // -----SERVER SIDE VALIDATION ----------
-    /*
+    
     if (!username || !password) {
         res.status(500)
           .json({
             errorMessage: 'Please enter username and password'
           });
         return;  
-    }
+    }/*
     const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
     if (!myRegex.test(email)) {
         res.status(500).json({
@@ -97,14 +97,14 @@ router.post('/signin', (req, res) => {
                 //if passwords do not match
                 else {
                     res.status(500).json({
-                        error: 'Passwords don\'t match',
+                        error: 'Passwords dont match',
                     })
                   return; 
                 }
             })
             .catch(() => {
                 res.status(500).json({
-                    error: 'Email format not correct',
+                    error: 'User format not correct',
                 })
               return; 
             });
@@ -112,7 +112,7 @@ router.post('/signin', (req, res) => {
       //throw an error if the user does not exists 
       .catch((err) => {
         res.status(500).json({
-            error: 'Email does not exist',
+            error: 'User does not exist',
             message: err
         })
         return;  

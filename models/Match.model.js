@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 // require user model here
-//require("./User.model")
+require("./User.model")
 
 //define match schema
 const matchSchema = new Schema({
@@ -14,10 +14,12 @@ const matchSchema = new Schema({
  // duration: Number,
   //numberOfParticipants: Number,
   //equipment: String,
- // userId:[{
- //   type: Schema.Types.ObjectId,
-//  ref:"User"
-//} //]
+
+  //keeps track of all user who joined matches
+  userId:[{
+    type: Schema.Types.ObjectId,
+  ref:"User"
+}]
 
 });
 
