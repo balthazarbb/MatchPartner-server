@@ -1,12 +1,14 @@
 const { Schema, model } = require("mongoose");
+const UserModel = require('../models/User.model')
+
 
 const CommentSchema = new Schema({
   myComment: String,
-  user: {type: Schema.Types.ObjectId, ref: 'User'},
-  timestamps: true,
+  username: {type: Schema.Types.ObjectId, ref: 'User'},
+  //timestamps: true,
 });
-const NoteModel = model("Note", NoteSchema);
-module.exports = NoteModel;
+const CommentModel = model("Comment", CommentSchema);
+module.exports = CommentModel;
 
 /*
 const { Schema, model } = require("mongoose")

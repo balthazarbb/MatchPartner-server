@@ -20,6 +20,19 @@ router.get('/matches', (req, res) => {
           })         
 })
 
+ //List route, do i need extra raoue?
+router.get('/list', (req, res) => {
+     MatchModel.find()
+          .then((response) => {
+               res.status(200).json(response)
+          })
+          .catch((err) => {
+               res.status(500).json({
+                    error: 'Oooops',
+                    message: err
+               })
+          })         
+})
 // will handle all POST requests to http:localhost:5005/api/create
 
 router.post('/create', (req, res) => {  

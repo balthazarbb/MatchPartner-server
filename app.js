@@ -32,7 +32,10 @@ app.use(session({
     mongoUrl:process.env.MONGODB_URI || "mongodb://localhost/MatchPartner",
     ttl: 60*60*24, //expires in one day
   })
-}))
+}));
+
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controled from the routes/index.js
@@ -46,9 +49,17 @@ app.use('/api', matchesRoutes);
 const matchesPart = require('./routes/participant.routes');
 app.use('/api', matchesPart);
 
-//const commentRoutes = require('./routes/comment.routes');
-//app.use('/api', commentRoutes);
+const commentRoutes = require('./routes/comment.routes');
+app.use('/api', commentRoutes);
 
+
+
+
+
+app.use((req, res, next) => {
+	// If no routes match, send them the React HTML.
+	res.sendFile(__dirname + "/public/index.html");
+});
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
