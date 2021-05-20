@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 //installed bcrypt.js
-const bcrypt = require('bcryptjs');
-const UserModel = require('../models/User.model');
+const bcrypt = require('bcryptjs')
+const UserModel = require('../models/User.model')
 
 
 router.post('/signup', (req, res) => {

@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 const UserModel = require('../models/User.model')
 const MatchModel = require('../models/Match.model')
 

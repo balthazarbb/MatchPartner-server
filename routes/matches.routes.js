@@ -1,4 +1,3 @@
-
 const express = require('express')
 const router = express.Router()
 
@@ -36,9 +35,9 @@ router.get('/list', (req, res) => {
 // will handle all POST requests to http:localhost:5005/api/create
 
 router.post('/create', (req, res) => {  
-    const {sports, username} = req.body;
+    const {sports, equipment, dateAndTime, duration, numberOfParticipants} = req.body;
     console.log(req.body)  //how to pass userID??
-    MatchModel.create({sports, username})
+    MatchModel.create({sports, equipment, dateAndTime, duration, numberOfParticipants})
           .then((response) => {
             //console.log(sports)
                res.status(200).json(response)
@@ -56,8 +55,10 @@ router.post('/create', (req, res) => {
 //PS: Don't type :todoId , it's something dynamic, 
 router.get('/matches/:id', (req, res) => {
     MatchModel.findById(req.params.id)
+     .populate('commentId')
      .populate('userId')
      .then((response) => {
+
           res.status(200).json(response)
      })
      .catch((err) => {
@@ -98,11 +99,19 @@ router.patch('/matches/:id', (req, res) => {
           }) 
 })
 
+router.patch('/matches/:id/addcomment', (req, res) => {
+    let id = req.params.id
+    const {comment} = req.body;
+    MatchModel.findByIdAndUpdate(id, {$push: {commentId: comment}}, {new: true})
+          .then((response) => {
+               res.status(200).json(response)
+          })
+          .catch((err) => {
+               res.status(500).json({
+                    error: 'Something went wrong',
+                    message: err
+               })
+          }) 
+})
+
 module.exports = router;
-
-
-/*
-Line 76
-, dateAndTime, duration, numberOfParticipants, equipment
-and so on
- */

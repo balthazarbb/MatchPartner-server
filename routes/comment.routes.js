@@ -6,7 +6,7 @@ const MatchModel = require('../models/Match.model')
 
 
 //profile right?
-router.get('/user', (req, res, next) => {
+router.get('/profile', (req, res, next) => {
 
   // or MatchModelFindByIdAndUpdate
      CommentModel.find(req.sessin.loggedInUser._id)
@@ -20,12 +20,11 @@ router.get('/user', (req, res, next) => {
                message: err
                })
           })         
-})            
+})           
 router.post('/createcomment', (req, res, next) => {  
-     const {myComment} = req.body;
-     let userId = req.session.loggedInUser._id
-     //key?
-     CommentModel.create({myComment, user: userId})
+     const {newComment} = req.body;
+     console.log(newComment)
+     CommentModel.create(newComment)
           .then((response) => {
                res.status(200).json(response)              
           })
@@ -76,5 +75,3 @@ router.patch('/comment/:id', (req, res) => {
           }) 
 })
 module.exports = router;
-
-

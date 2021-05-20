@@ -8,6 +8,4 @@ router.get("/", (req, res, next) => {
 const authRoutes = require("./auth.routes");
 router.use("/", authRoutes);
 
-
-
 module.exports = router;

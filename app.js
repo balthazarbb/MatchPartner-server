@@ -49,8 +49,8 @@ app.use('/api', matchesRoutes);
 const matchesPart = require('./routes/participant.routes');
 app.use('/api', matchesPart);
 
-//const commentRoutes = require('./routes/comment.routes');
-//app.use('/api', commentRoutes);
+const commentRoutes = require('./routes/comment.routes');
+app.use('/api', commentRoutes);
 
 
 
