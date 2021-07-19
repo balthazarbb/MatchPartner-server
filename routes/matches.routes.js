@@ -19,7 +19,7 @@ router.get('/matches', (req, res) => {
           })         
 })
 
- //List route, do i need extra raoue?
+ //List route
 router.get('/list', (req, res) => {
      MatchModel.find()
           .then((response) => {
@@ -83,7 +83,7 @@ router.delete('/matches/:id', (req, res) => {
           })  
 })
 
-// will handle all PATCH requests to http:localhost:5005/api/todos/:id
+// will handle all PATCH requests to http:localhost:5005/api/matches/:id
 router.patch('/matches/:id', (req, res) => {
     let id = req.params.id
     const {sports} = req.body;
